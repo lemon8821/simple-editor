@@ -15,8 +15,16 @@ if ('serviceWorker' in navigator) {
 }
 
 // place your code below
+const saveButton = document.querySelector('.form__button--save-js');
+const loadButton = document.querySelector('.form__button--load-js');
+const text = document.querySelector('.form__text--js');
+saveButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  localStorage.setItem('text',text.value);
+  console.log(e);
+});
 
-
-console.log(`Hello world!`);
-
-
+loadButton.addEventListener('click', e => {
+  e.preventDefault();
+  text.value = localStorage.getItem("text");
+})
