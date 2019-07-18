@@ -2,6 +2,29 @@
 @import "_variables";
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap&subset=latin-ext');
 
+
+@keyframes change {
+  0%{
+    background: rebeccapurple;
+  }
+  20%{
+    background: blue;
+  }
+  40%{
+    background: green;
+  }
+  60%{
+    background: yellow;
+  }
+  80%{
+    background: red;
+  }
+  100%{
+    background: rebeccapurple;
+  }
+}
+
+
 html {
   box-sizing: border-box;
 }
@@ -13,12 +36,14 @@ html {
 body {
   background: linear-gradient(180deg, #1E5E6B 0%, rgba(27, 79, 90, 0.36) 100%) no-repeat;
   min-height: 100vh;
+  font-family: 'Roboto', sans-serif;
 }
 .main {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  padding-top: 50px;
 }
 .container {
   background: #FFFFFF;
@@ -38,9 +63,22 @@ body {
 .form__text {
   width: 500px;
   height: 300px;
-  border: none;
   background: #C4C4C4;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  &:focus {
+    outline: none;
+    transform: scale(1.01);
+    transition: transform 1s ease-in-out;
+  }
+}
+
+@keyframes borderanim {
+  from {
+    border: none;
+  }
+  to{
+    border: 1px solid black;
+  }
 }
 .form__actions {
   display: flex;
@@ -48,6 +86,7 @@ body {
   margin: 20px 0;
 }
 .form__button {
+  outline: none;
   cursor: pointer;
   width: 160px;
   height: 60px;
@@ -56,11 +95,58 @@ body {
   box-shadow: 4px 4px 2px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
   &:hover {
-    animation: animate 2s ease-in infinite;
-    box-shadow: none;
+    transition: background .9s linear;
     box-shadow: inset 4px 4px 2px #335A62;
   }
   &--save {
     background: rgb(66, 120, 131);
+  }
+  &--clicked
+  {
+    background: rgb(172, 172, 172);
+    transition: background 400ms ease-in;
+  }
+}
+
+.notes {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 700px;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}
+.note {
+  background: red;
+  width: 300px;
+  height: 400px;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: wheat;
+}
+.note__header {
+  font-size: 1.6em;
+  flex-basis: 10%;
+  padding: 8px;
+}
+.note__footer {
+
+  flex-basis: 10%;
+  padding: 10px;
+}
+.note__content {
+  flex-basis: 80%;
+
+  padding: 8px;
+}
+.note__edit {
+
+  float: right;
+  &:hover
+  {
+    cursor: pointer;
   }
 }
